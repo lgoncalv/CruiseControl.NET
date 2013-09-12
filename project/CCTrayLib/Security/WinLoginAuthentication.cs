@@ -15,8 +15,6 @@ namespace ThoughtWorks.CruiseControl.CCTrayLib.Security
         : IAuthenticationMode
     {
         private string settings;
-        private readonly string userName = Environment.UserName;
-        private readonly string domain = Environment.UserDomainName;
         private readonly string rsaContainerName = "CruiseControl.NET WinLogin Settings";
 
         public string Settings
@@ -27,7 +25,7 @@ namespace ThoughtWorks.CruiseControl.CCTrayLib.Security
 
         public bool Configure(IWin32Window owner)
         {
-            ConfigureWinLogin newDialog = new ConfigureWinLogin(domain, userName);
+            ConfigureWinLogin newDialog = new ConfigureWinLogin(Environment.UserDomainName, Environment.UserName);
             newDialog.WinLoginSet += delegate(object sender, EventArgs e) { settings = EncryptSettings(newDialog.Password); };
             DialogResult result = newDialog.ShowDialog(owner);
             return (result == DialogResult.OK);
@@ -40,8 +38,8 @@ namespace ThoughtWorks.CruiseControl.CCTrayLib.Security
 
         public LoginRequest GenerateCredentials()
         {
-            LoginRequest credentials = new LoginRequest(userName);
-            credentials.AddCredential(LoginRequest.DomainCredential, domain);
+            LoginRequest credentials = new LoginRequest(Environment.UserName);
+            credentials.AddCredential(LoginRequest.DomainCredential, Environment.UserDomainName);
             credentials.AddCredential(LoginRequest.PasswordCredential, DecryptSettings(settings));
             return credentials;
         }
