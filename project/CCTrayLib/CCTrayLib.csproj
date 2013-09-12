@@ -547,6 +547,12 @@
     <Compile Include="Security\ConfigureUserPassword.Designer.cs">
       <DependentUpon>ConfigureUserPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Security\ConfigureWinLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\ConfigureWinLogin.Designer.cs">
+      <DependentUpon>ConfigureWinLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Security\WinLoginAuthentication.cs" />
     <Compile Include="Security\UserPasswordAuthentication.cs" />
     <Compile Include="Security\UserNameAuthentication.cs" />
@@ -574,6 +580,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="X10\X10Definitions.cs" />
+    <EmbeddedResource Include="Security\ConfigureWinLogin.resx">
+      <DependentUpon>ConfigureWinLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ResourceIcons\Gray.ico" />
     <None Include="ResourceIcons\Green.ico" />
     <None Include="ResourceIcons\Orange.ico" />

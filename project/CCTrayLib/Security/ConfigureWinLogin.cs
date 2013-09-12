@@ -10,11 +10,11 @@ namespace ThoughtWorks.CruiseControl.CCTrayLib.Security
 {
     public partial class ConfigureWinLogin : Form
     {
-        public ConfigureWinLogin(string userName, string domain)
+        public ConfigureWinLogin(string domain, string userName)
         {
             InitializeComponent();
-            tUsername.Text = userName;
             tDomain.Text = domain;
+            tUsername.Text = userName;
         }
 
         public string Password
@@ -22,11 +22,11 @@ namespace ThoughtWorks.CruiseControl.CCTrayLib.Security
             get { return tPassword.Text; }
         }
 
-        public event EventHandler PasswordSet;
+        public event EventHandler WinLoginSet;
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (PasswordSet != null) PasswordSet(this, EventArgs.Empty);
+            if (WinLoginSet != null) WinLoginSet(this, EventArgs.Empty);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
